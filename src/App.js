@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { Picker } from './Picker'
+import './App.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [name, setName ] = useState('')
+  const [allReadyChoosen, setallReadyChoosen] = useState([])
+
+  const studentNamesArray = process.env.REACT_APP_STUDENT_NAMES.split(',')
+  const displayToggle = allReadyChoosen.length <= studentNamesArray.length
+
+	const pickStudent = () => {
+    
+    const pickedStudent = studentNamesArray[Math.floor(Math.random() * studentNamesArray.length)]
+
+    setallReadyChoosen([...allReadyChoosen, pickedStudent])
+
+    if (allReadyChoosen.includes(pickedStudent)) {
+      pickStudent()
+    } else {
+      setName(pickedStudent)
+    }
+
+  }
+
+	return (
+		<Picker
+			name={name}
+			pickStudent={pickStudent}
+			displayToggle={displayToggle}
+		/>
+	)
 }
 
-export default App;
+export default App
