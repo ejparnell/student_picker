@@ -13,12 +13,11 @@ function App() {
     
     const pickedStudent = studentNamesArray[Math.floor(Math.random() * studentNamesArray.length)]
 
-    setallReadyChoosen([...allReadyChoosen, pickedStudent])
-
     if (allReadyChoosen.includes(pickedStudent)) {
-      pickStudent()
+      return pickStudent()
     } else {
-      setName(pickedStudent)
+      setallReadyChoosen([...allReadyChoosen, pickedStudent])
+      return setName(pickedStudent)
     }
 
   }
