@@ -13,7 +13,7 @@ function App() {
     
     const pickedStudent = studentNamesArray[Math.floor(Math.random() * studentNamesArray.length)]
 
-    if (allReadyChoosen.includes(pickedStudent)) {
+    if (allReadyChoosen.includes(pickedStudent) && !displayToggle) {
       return pickStudent()
     } else {
       setallReadyChoosen([...allReadyChoosen, pickedStudent])
